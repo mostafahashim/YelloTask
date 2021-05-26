@@ -6,7 +6,7 @@ import kotlin.properties.Delegates
 
 object Preferences {
 
-    private var PREFS_NAME = "WordsListAppPref"
+    private var PREFS_NAME = "EmitterAppPref"
     private var USER_ID_PREF = "userID"
     private var APIToken_PREF = "api_token"
     private var USER_Email_PREF = "userEmail"

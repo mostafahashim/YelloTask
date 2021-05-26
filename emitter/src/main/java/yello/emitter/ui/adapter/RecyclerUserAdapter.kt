@@ -5,12 +5,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import yello.data.model.UserModel
 import yello.emitter.R
 import yello.emitter.databinding.ItemProgressLoadingBinding
 import yello.emitter.databinding.ItemRecyclerUserBinding
 import yello.emitter.observer.OnRecyclerItemClickListener
-import yello.emitter.model.UserModel
-
 
 class RecyclerUserAdapter(
     var userModels: ArrayList<UserModel>,

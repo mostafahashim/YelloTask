@@ -10,7 +10,7 @@
 
         <variable
             name="model"
-            type="yello.emitter.model.UserModel" />
+            type="yello.data.model.UserModel" />
     </data>
 
     <androidx.cardview.widget.CardView

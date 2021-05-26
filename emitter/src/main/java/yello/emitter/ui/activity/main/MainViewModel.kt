@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import yello.emitter.MyApplication
 import yello.emitter.R
-import yello.emitter.model.UserModel
+import yello.data.model.UserModel
 import yello.emitter.observer.OnRecyclerItemClickListener
 import yello.emitter.remote.JsonParser
 import yello.emitter.remote.URL
@@ -38,6 +38,7 @@ class MainViewModel(
         recyclerUserAdapter = RecyclerUserAdapter(
             userModels!!, object : OnRecyclerItemClickListener {
                 override fun onRecyclerItemClickListener(position: Int) {
+                    observer.sendUserData(userModels!![position])
                 }
 
             })
@@ -111,6 +112,7 @@ class MainViewModel(
     }
 
     interface Observer {
+        fun sendUserData(userModel: UserModel)
     }
 
 }
