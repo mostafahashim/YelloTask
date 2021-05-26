@@ -1,19 +1,23 @@
-package yello.emitter.ui.activity.baseActivity
+package yello.receiver.ui.activity.baseActivity
 
 import androidx.lifecycle.AndroidViewModel
-import yello.emitter.MyApplication
-import yello.emitter.util.Preferences
+import androidx.room.Room
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import yello.data.local.AppDatabase
+import yello.receiver.MyApplication
 
 open class BaseActivityViewModel(
     var application: MyApplication
 ) : AndroidViewModel(application) {
     lateinit var baseViewModelObserver: BaseViewModelObserver
-
-    var baseCompositeDisposable = CompositeDisposable()
+    var db: AppDatabase = Room.databaseBuilder(
+        application.applicationContext,
+        AppDatabase::class.java,
+        "YelloDB"
+    ).build()
 
     init {
     }
@@ -32,21 +36,6 @@ open class BaseActivityViewModel(
 
     fun onSearchClicked() {
         baseViewModelObserver.onSearchClicked()
-    }
-
-    fun clearAppPreferencesAndDB() {
-        baseCompositeDisposable.add(Observable.fromCallable {
-            Preferences.clearUserData()
-        }
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe {
-            }
-            .subscribe(
-                {
-                },
-                { }
-            ))
     }
 
     interface BaseViewModelObserver {

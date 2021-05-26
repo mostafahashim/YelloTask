@@ -1,6 +1,6 @@
-package yello.emitter.remote.remoteService
+package yello.data.remote.remoteService
 
-import yello.emitter.remote.setup.getDefaultHeaders
+import yello.data.remote.setup.getDefaultHeaders
 import com.google.gson.Gson
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable

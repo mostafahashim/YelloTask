@@ -2,9 +2,42 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="yello.receiver.ui.activity.main.MainViewModel" />
+    </data>
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"></RelativeLayout>
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/layoutNoData"
+            layout="@layout/layout_error_no_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:visibility="@{viewModel.isShowNoData()?View.VISIBLE : View.GONE}" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/padding_5"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:visibility="@{!viewModel.isShowNoData() ?View.VISIBLE : View.GONE}"
+            app:adapter="@{viewModel.recyclerUserAdapter}"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:spanCount="1" />
+
+    </RelativeLayout>
 </layout>

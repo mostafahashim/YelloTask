@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
 
     fun showUserData(userModel: UserModel) {
         showMessage(
-            this, userModel.name, getString(R.string.send_messege),
+            this, userModel.name!!, getString(R.string.send_messege),
             object : OnAskUserAction {
                 override fun onPositiveAction() {
                 }

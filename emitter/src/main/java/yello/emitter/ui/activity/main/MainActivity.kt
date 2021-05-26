@@ -14,7 +14,7 @@ import yello.data.model.UserModel
 import yello.emitter.R
 import yello.emitter.databinding.ActivityMainBinding
 import yello.emitter.observer.OnAskUserAction
-import yello.emitter.remote.setup.isInternetAvailable
+import yello.data.remote.setup.isInternetAvailable
 import yello.emitter.ui.activity.baseActivity.BaseActivity
 import yello.emitter.util.ActivityUtils
 import yello.emitter.util.showMessage
@@ -40,7 +40,6 @@ class MainActivity : BaseActivity(
         initializeViews()
         setListener()
     }
-
 
     override fun initializeViews() {
         ActivityUtils.setSwipeRefreshLayoutColor(
@@ -90,7 +89,7 @@ class MainActivity : BaseActivity(
 
     override fun sendUserData(userModel: UserModel) {
         showMessage(
-            this, userModel.name, getString(R.string.send_messege),
+            this, userModel.name!!, getString(R.string.send_messege),
             object : OnAskUserAction {
                 override fun onPositiveAction() {
                     val intent = Intent()

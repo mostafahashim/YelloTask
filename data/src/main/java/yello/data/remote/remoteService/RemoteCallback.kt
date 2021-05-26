@@ -1,4 +1,4 @@
-package yello.emitter.remote.remoteService
+package yello.data.remote.remoteService
 
 interface RemoteCallback {
      fun onStartConnection()

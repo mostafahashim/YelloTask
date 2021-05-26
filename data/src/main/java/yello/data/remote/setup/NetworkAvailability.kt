@@ -1,4 +1,4 @@
-package yello.emitter.remote.setup
+package yello.data.remote.setup
 
 import android.content.Context
 import android.net.ConnectivityManager

@@ -1,8 +1,7 @@
-package yello.emitter.remote.remoteService
+package yello.data.remote.remoteService
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import yello.emitter.BuildConfig
-import yello.emitter.util.Preferences
+import yello.data.BuildConfig
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -22,10 +21,6 @@ class ConnectionHandler {
 
     internal fun getClient(): Retrofit? {
         var baseUrl = BuildConfig.BASE_URL
-        if (Preferences.getBaseUrl() != null && Preferences.getBaseUrl()
-                .isNotEmpty()
-        )
-            baseUrl = Preferences.getBaseUrl()
         retrofit = Retrofit.Builder().baseUrl(baseUrl).client(
             getUnsafeOkHttpClient().connectTimeout(40, TimeUnit.HOURS)
                 .readTimeout(60, TimeUnit.MINUTES)

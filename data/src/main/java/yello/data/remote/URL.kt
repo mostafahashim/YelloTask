@@ -1,4 +1,4 @@
-package yello.emitter.remote
+package yello.data.remote
 
 object URL {
 

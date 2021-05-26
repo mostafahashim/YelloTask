@@ -61,6 +61,7 @@
     <string name="website_with_value">Website: %s</string>
     <string name="send">Send</string>
     <string name="send_messege">Press Send to transfer this user data to MiddleMan App</string>
+    <string name="show_saved_users">Show Saved Users</string>
 
 </resources>
 

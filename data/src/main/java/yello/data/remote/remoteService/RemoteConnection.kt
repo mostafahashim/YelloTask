@@ -1,7 +1,7 @@
-package yello.emitter.remote.remoteService
+package yello.data.remote.remoteService
 
 import android.os.AsyncTask
-import yello.emitter.remote.setup.getDefaultHeaders
+import yello.data.remote.setup.getDefaultHeaders
 import com.google.gson.Gson
 import okhttp3.RequestBody
 import okhttp3.ResponseBody

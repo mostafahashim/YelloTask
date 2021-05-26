@@ -1,4 +1,4 @@
-package yello.emitter.ui.adapter
+package yello.receiver.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,10 +6,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import yello.data.model.UserModel
-import yello.emitter.R
-import yello.emitter.databinding.ItemProgressLoadingBinding
-import yello.emitter.databinding.ItemRecyclerUserBinding
-import yello.emitter.observer.OnRecyclerItemClickListener
+import yello.receiver.R
+import yello.receiver.databinding.ItemProgressLoadingBinding
+import yello.receiver.databinding.ItemRecyclerUserBinding
+import yello.receiver.observer.OnRecyclerItemClickListener
 
 class RecyclerUserAdapter(
     var userModels: ArrayList<UserModel>,

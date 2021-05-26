@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="yello.receiver.ui.activity.splash.SplashViewModel" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/layout_container_splashActivity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/ivlogo_customProgressDialog"
+            android:layout_width="@dimen/padding_300"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/padding_5"
+            android:adjustViewBounds="true"
+            android:src="@mipmap/splash_logo_foreground" />
+
+        <TextView
+            android:id="@+id/btn_dialog_sure_Ok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_16"
+            android:layout_marginEnd="@dimen/padding_16"
+            android:layout_marginBottom="@dimen/padding_16"
+            android:background="@drawable/big_round_corner_color_accent_selector"
+            android:fontFamily="@font/avenir_medium"
+            android:gravity="center"
+            android:onClick="@{()->viewModel.observer.openMainScreen()}"
+            android:includeFontPadding="false"
+            android:padding="@dimen/padding_10"
+            android:text="@string/show_saved_users"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_18" />
+
+    </LinearLayout>
+</layout>

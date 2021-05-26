@@ -8,11 +8,11 @@ import yello.emitter.MyApplication
 import yello.emitter.R
 import yello.data.model.UserModel
 import yello.emitter.observer.OnRecyclerItemClickListener
-import yello.emitter.remote.JsonParser
-import yello.emitter.remote.URL
-import yello.emitter.remote.remoteService.RemoteCallback
-import yello.emitter.remote.remoteService.startGetMethodUsingCoroutines
-import yello.emitter.remote.setup.getDefaultParams
+import yello.data.remote.JsonParser
+import yello.data.remote.URL
+import yello.data.remote.remoteService.RemoteCallback
+import yello.data.remote.remoteService.startGetMethodUsingCoroutines
+import yello.data.remote.setup.getDefaultParams
 import yello.emitter.ui.activity.baseActivity.BaseActivityViewModel
 import yello.emitter.ui.adapter.RecyclerUserAdapter
 

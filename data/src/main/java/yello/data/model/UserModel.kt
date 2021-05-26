@@ -1,15 +1,18 @@
 package yello.data.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.io.Serializable
 
-class UserModel : Serializable {
-    lateinit var id: String
-    lateinit var name: String
-    lateinit var username: String
-    lateinit var email: String
-    lateinit var address: AddressModel
-    lateinit var phone: String
-    lateinit var website: String
-    lateinit var company: CompanyModel
-    var holderType = ""
-}
+@Entity
+data class UserModel(
+    @PrimaryKey(autoGenerate = false) var id: String,
+    var name: String?,
+    var username: String?,
+    var email: String?,
+    var address: AddressModel?,
+    var phone: String?,
+    var website: String?,
+    var company: CompanyModel?,
+    var holderType: String? = ""
+) : Serializable

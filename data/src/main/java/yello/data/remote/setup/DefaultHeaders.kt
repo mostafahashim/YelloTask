@@ -1,6 +1,5 @@
-package yello.emitter.remote.setup
+package yello.data.remote.setup
 
-import yello.emitter.util.Preferences
 import kotlin.collections.HashMap
 
 inline fun getDefaultHeaders(isFormData: Boolean): MutableMap<String, String> {
@@ -9,9 +8,5 @@ inline fun getDefaultHeaders(isFormData: Boolean): MutableMap<String, String> {
         params["Content-Type"] = "application/json"
 
     params["Accept"] = "application/json"
-    params["Accept-Language"] = Preferences.getApplicationLocale()
-    params["Authorization"] = if (!Preferences.getAPIToken()
-            .isNullOrEmpty()
-    ) "Bearer ${Preferences.getAPIToken()}" else ""
     return params
 }

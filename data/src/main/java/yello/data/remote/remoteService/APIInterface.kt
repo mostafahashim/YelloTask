@@ -1,4 +1,4 @@
-package yello.emitter.remote.remoteService
+package yello.data.remote.remoteService
 
 import io.reactivex.Single
 import okhttp3.RequestBody

@@ -1,4 +1,4 @@
-package yello.emitter.remote
+package yello.data.remote
 
 import yello.data.model.*
 import com.google.gson.Gson
