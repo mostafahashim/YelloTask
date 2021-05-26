@@ -1,2 +1,3 @@
 rootProject.name = "YelloTask"
-include ':app'
+include ':emitter'
+include ':middleman'
