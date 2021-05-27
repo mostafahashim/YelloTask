@@ -2,7 +2,10 @@ package yello.emitter.ui.activity.main
 
 import android.content.ComponentName
 import android.content.Intent
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.webkit.*
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
@@ -46,6 +49,56 @@ class MainActivity : BaseActivity(
             this,
             binding.swipeRefreshHomeFragment
         )
+
+        //permission to start from background
+        requestPermission()
+        if (intent?.extras != null && intent?.hasExtra("UserModel")!!
+            && intent?.hasExtra("Result")!!
+        ) {
+            var userModel = intent?.extras?.get("UserModel") as UserModel
+            var result = intent?.extras?.getString("Result")
+            showReceivedUserData(userModel, result!!)
+        }
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        if (intent?.extras != null && intent?.hasExtra("UserModel")!!
+            && intent?.hasExtra("Result")!!
+        ) {
+            var userModel = intent?.extras?.get("UserModel") as UserModel
+            var result = intent?.extras?.getString("Result")
+            showReceivedUserData(userModel, result!!)
+        }
+    }
+
+    fun showReceivedUserData(userModel: UserModel, result: String) {
+        showMessage(
+            this, userModel.name!!, result,
+            object : OnAskUserAction {
+                override fun onPositiveAction() {
+                }
+
+                override fun onNegativeAction() {
+                }
+
+            }, false, getString(R.string.no_text),
+            getString(R.string.ok), true
+        )
+    }
+
+    private fun requestPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!Settings.canDrawOverlays(this)) {
+                val intent = Intent(
+                    Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                    Uri.parse("package:" + this.packageName)
+                )
+                startActivityForResult(intent, 0)
+            } else {
+                //Permission Granted-System will work
+            }
+        }
     }
 
     override fun setListener() {
@@ -92,20 +145,24 @@ class MainActivity : BaseActivity(
             this, userModel.name!!, getString(R.string.send_messege),
             object : OnAskUserAction {
                 override fun onPositiveAction() {
-                    val intent = Intent()
-                    intent.action = "receiveFromEmitter"
-                    intent.putExtra("UserModel", userModel)
-                    intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES)
-                    intent.component =
-                        ComponentName("yello.middleman", "yello.middleman.EmitterBroadcastReceiver")
-                    sendBroadcast(intent)
+                    Intent().run {
+                        action = "receiveFromEmitter"
+                        putExtra("UserModel", userModel)
+                        addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES)
+                        component =
+                            ComponentName(
+                                "yello.middleman",
+                                "yello.middleman.EmitterBroadcastReceiver"
+                            )
+                        sendBroadcast(this)
+                    }
                 }
 
                 override fun onNegativeAction() {
                 }
 
             }, true, getString(R.string.cancel_underline),
-            getString(R.string.send),true
+            getString(R.string.send), true
         )
     }
 

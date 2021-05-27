@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <string name="app_name" translatable="false">Receiver</string>
+    <string name="app_name" translatable="false">Yello Receiver</string>
     <string name="no_text" translatable="false" />
-    <string name="default_notification_channel_id" translatable="false">receiver_default_channel</string>
-    <string name="default_notification_channel_name" translatable="false">receiver_news</string>
+    <string name="default_notification_channel_id" translatable="false">yello_receiver_default_channel</string>
+    <string name="default_notification_channel_name" translatable="false">yello_receiver_news</string>
     <string name="lorem_ipsum" translatable="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
         ut labore et dolore magna aliqua. Ut enim ad minim veniam, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
         ut labore et dolore magna aliqua. Ut enim ad minim veniam,</string>
@@ -62,6 +62,7 @@
     <string name="send">Send</string>
     <string name="send_messege">Press Send to transfer this user data to MiddleMan App</string>
     <string name="show_saved_users">Show Saved Users</string>
+    <string name="new_user_received_from_middleman">New user received from MiddleMan</string>
 
 </resources>
 

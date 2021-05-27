@@ -2,7 +2,10 @@ package yello.receiver.ui.activity.main
 
 import android.content.ComponentName
 import android.content.Intent
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.webkit.*
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
@@ -44,29 +47,8 @@ class MainActivity : BaseActivity(
     override fun initializeViews() {
     }
 
+
     override fun setListener() {
-    }
-
-    fun sendUserData(userModel: UserModel) {
-        showMessage(
-            this, userModel.name!!, getString(R.string.send_messege),
-            object : OnAskUserAction {
-                override fun onPositiveAction() {
-                    val intent = Intent()
-                    intent.action = "receiveFromEmitter"
-                    intent.putExtra("UserModel", userModel)
-                    intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES)
-                    intent.component =
-                        ComponentName("yello.middleman", "yello.middleman.EmitterBroadcastReceiver")
-                    sendBroadcast(intent)
-                }
-
-                override fun onNegativeAction() {
-                }
-
-            }, true, getString(R.string.cancel_underline),
-            getString(R.string.send), true
-        )
     }
 
 }

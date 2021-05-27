@@ -13,6 +13,8 @@ import io.reactivex.schedulers.Schedulers
 import yello.data.local.AppDatabase
 import yello.data.local.UserModelDAO
 import yello.data.model.UserModel
+import yello.receiver.ui.activity.main.MainActivity
+import yello.receiver.ui.activity.splash.SplashActivity
 
 class RemoteService : Service() {
 
@@ -38,17 +40,27 @@ class RemoteService : Service() {
         ).build()
         val userModelDAO: UserModelDAO = db.userModelDAO()
         var compositeDisposable = CompositeDisposable()
-        lateinit var replyTo : Messenger
+        lateinit var replyTo: Messenger
+        lateinit var userModel: UserModel
         override fun handleMessage(msg: Message) {
             this.replyTo = msg.replyTo
             val bundle = msg.obj as Bundle
-            var userModel = bundle.getSerializable("UserModel") as UserModel
+            userModel = bundle.getSerializable("UserModel") as UserModel
+            //open home screen to show received data
+            Intent(context, SplashActivity::class.java).run {
+                putExtras(bundle)
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                context.startActivity(this)
+            }
             saveUserToLocalDB(userModel)
         }
 
         fun sendReplyMessage(isSaved: Boolean) {
             //Setup the reply message
-            val messageToSend = Message.obtain(null, if (isSaved) 1 else -1, 0, 0)
+            val bundle = Bundle()
+            bundle.putString("Result", if (isSaved) "OK" else "NOK")
+            bundle.putSerializable("UserModel", userModel)
+            val messageToSend = Message.obtain(null, if (isSaved) 1 else -1, 0, 0, bundle)
             try {
                 //make the RPC invocation
                 val replyTo = replyTo

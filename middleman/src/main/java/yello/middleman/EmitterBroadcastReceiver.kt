@@ -30,14 +30,12 @@ class EmitterBroadcastReceiver : BroadcastReceiver(), ServiceConnection {
                 "yello.receiver",
                 "yello.receiver.RemoteService"
             )
-            context.applicationContext.bindService(intentBinder, connection!!, Context.BIND_AUTO_CREATE)
+            context.applicationContext.bindService(
+                intentBinder,
+                connection!!,
+                Context.BIND_AUTO_CREATE
+            )
             sendDataToServer(context, userModel)
-//            Intent(context, MainActivity::class.java).run {
-//                var bundle = intent.extras ?: Bundle()
-//                putExtras(bundle)
-//                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-//                context.startActivity(this)
-//            }
         }
     }
 
@@ -77,11 +75,21 @@ class EmitterBroadcastReceiver : BroadcastReceiver(), ServiceConnection {
 
     private class IncomingHandler(var context: Context) : Handler(Looper.getMainLooper()) {
         override fun handleMessage(msg: Message) {
-            val what = msg.what
-            Toast.makeText(
-                context.getApplicationContext(),
-                "Remote Service replied-($what)", Toast.LENGTH_LONG
-            ).show()
+            val bundle = msg.obj as Bundle
+            var result = bundle.getString("Result")
+            var userModel = bundle.getSerializable("UserModel") as UserModel
+            Intent().run {
+                action = "receiveFromMiddleMan"
+                putExtra("UserModel", userModel)
+                putExtra("Result", result)
+                addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES)
+                component =
+                    ComponentName(
+                        "yello.emitter",
+                        "yello.emitter.MiddleManBroadcastReceiver"
+                    )
+                context.sendBroadcast(this)
+            }
         }
     }
 }

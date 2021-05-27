@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <string name="app_name" translatable="false">Middle Man</string>
+    <string name="app_name" translatable="false">Yello MiddleMan</string>
     <string name="no_text" translatable="false" />
-    <string name="default_notification_channel_id" translatable="false">middleman_default_channel</string>
-    <string name="default_notification_channel_name" translatable="false">middleman_news</string>
+    <string name="default_notification_channel_id" translatable="false">yello_middleman_default_channel</string>
+    <string name="default_notification_channel_name" translatable="false">yello_middleman_news</string>
     <string name="lorem_ipsum" translatable="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
         ut labore et dolore magna aliqua. Ut enim ad minim veniam, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
         ut labore et dolore magna aliqua. Ut enim ad minim veniam,</string>
